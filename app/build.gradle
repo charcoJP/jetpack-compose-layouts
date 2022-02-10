@@ -53,6 +53,13 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
     implementation 'androidx.activity:activity-compose:1.3.1'
+
+    // NOTE:
+    //   - material-icons-extended は大規模なライブラリであり、APK のサイズに影響する可能性があります。
+    //   - そのため、製品版ビルドでは R8/Proguard を使用し、使用されていないリソースを取り除くことを検討してください。
+    // @see: https://developer.android.google.cn/jetpack/compose/resources?hl=ja#icons
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
