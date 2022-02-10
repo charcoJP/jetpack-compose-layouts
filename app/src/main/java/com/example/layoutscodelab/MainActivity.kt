@@ -5,7 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -27,8 +32,21 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LayoutsCodelabTheme {
-                LayoutsCodelab()
+                SimpleList()
             }
+        }
+    }
+}
+
+@Composable
+fun SimpleList() {
+    // We save the scrolling position with this state that can also
+    // be used to programmatically scroll the list
+    val scrollState = rememberLazyListState()
+
+    LazyColumn(state = scrollState) {
+        items(100) {
+            Text("Item #$it")
         }
     }
 }
@@ -40,14 +58,14 @@ fun LayoutsCodelab() {
             TopAppBar(title = {
                 Text(text = "LayoutsCodelab")
             },
-            actions = {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(Icons.Filled.Favorite, contentDescription = null)
-                }
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(Icons.Rounded.Chair, contentDescription = null)
-                }
-            })
+                actions = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(Icons.Filled.Favorite, contentDescription = null)
+                    }
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(Icons.Rounded.Chair, contentDescription = null)
+                    }
+                })
         }
     ) { innerPadding ->
         BodyContent(Modifier.padding(innerPadding))
